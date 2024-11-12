@@ -89,7 +89,9 @@ module "kv_module_localtest" {
 
 | Name | Description |
 |------|-------------|
-| <a name="output_id"></a> [id](#output\_id) | The Key Vault ID. |
-| <a name="output_vault_uri"></a> [vault\_uri](#output\_vault\_uri) | The URI of the Key Vault. |
+| <a name="output_id"></a> [id](#output\_id) | Key vault ID. |
+| <a name="output_location"></a> [location](#output\_location) | Key vault location. |
+| <a name="output_name"></a> [name](#output\_name) | Key vault name. |
+| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Key vault Resource group name. |
 
 <!-- END_TF_DOCS -->
