@@ -3,6 +3,7 @@
 ## Overview
 
 This #{MODULEDISPLAYNAME}# module provides the following features:
+- Deploys a Key vault
 
 
 ## Notes
