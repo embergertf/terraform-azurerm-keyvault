@@ -4,11 +4,18 @@
 
 # ############################   Dependencies         ############################
 
-# None
+# / Resource Group for the Key vault
+variable "resource_group_name" {
+  type        = string
+  description = "(Required) Name of the `Resource Group` in which to create the Key vault."
+}
 
 # ############################   Required Variables   ############################
 
-# None
+variable "tenant_id" {
+  type        = string
+  description = "(Required) The Azure tenant ID."
+}
 
 # ############################   Optional Variables   ############################
 # / Naming
@@ -82,5 +89,54 @@ variable "rnd_length" {
   default     = 2
 }
 
-# / #{MODULEDISPLAYNAME}#
-
+# / Key vault
+variable "public_internet_ips_to_allow" {
+  type        = list(string)
+  description = "(Optional) List of public IP addresses to allow to access the Key vault.)"
+  default     = []
+}
+variable "virtual_network_subnet_ids" {
+  type        = list(string)
+  description = "(Optional) List of Virtual Networks Ids to allow to access the Key vault.)"
+  default     = []
+}
+variable "deploy_validation_secret" {
+  type        = bool
+  description = "(Optional) When set to `true`, it will deploy a validation secret in the Key vault."
+  default     = false
+}
+variable "sku_name" {
+  type        = string
+  description = "(Optional) The Name of the SKU used for this Key Vault. Possible values are `standard` and `premium`."
+  default     = "standard"
+}
+variable "purge_protection_enabled" {
+  type        = bool
+  description = "(Optional) Is Purge Protection enabled for this Key Vault?"
+  default     = true
+}
+variable "enabled_for_disk_encryption" {
+  type        = bool
+  description = "(Optional) Is Disk Encryption enabled for this Key Vault?"
+  default     = true
+}
+variable "enabled_for_template_deployment" {
+  type        = bool
+  description = "(Optional) Is Template Deployment enabled for this Key Vault?"
+  default     = false
+}
+variable "enabled_for_deployment" {
+  type        = bool
+  description = "(Optional) Is Deployment enabled for this Key Vault?"
+  default     = false
+}
+variable "public_network_access_enabled" {
+  type        = bool
+  description = "(Optional) Is Public Network Access enabled for this Key Vault?"
+  default     = true
+}
+variable "soft_delete_retention_days" {
+  type        = number
+  description = "(Optional) The number of days that items should be retained for once soft deleted."
+  default     = 7
+}

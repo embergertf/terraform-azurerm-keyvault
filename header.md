@@ -1,44 +1,34 @@
-# #{MODULEDISPLAYNAME}# module
+# Key vault module
 
 ## Overview
 
-This #{MODULEDISPLAYNAME}# module provides the following features:
-- Deploys a Key vault
+This Key vault module provides the following features:
 
+- Deploys a Key vault
+- Deploy a "validation" secret in the Key vault, if specified
 
 ## Notes
 
-
 ## Example
 
-
 ```yaml
-module "rg_name" {
+module "kv_module_localtest" {
   # Local use
-  #source = "../../terraform-azurerm-base"
+  source = "../../terraform-azurerm-keyvault"
 
-  # Terraform Cloud/Enterprise use
-  source  = "app.terraform.io/embergertf/base/azurerm"
-  version = ">=1.0.0"
+  # Naming convention
+  naming_values = module.rg.naming_values
+  add_random    = true
 
-  region_code     = "usnc"
-  subsc_code      = "azint"
-  env             = "dev"
-  base_name       = "basemodule"
-  additional_name = ""
-  iterator        = "01"
-  owner           = "john.doe@internet.com"
-  additional_tags = {
-    app_id  = "1"
-    test_by = "emberger"
-  }
+  # Key vault settings
+  resource_group_name = module.rg.resource_group_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
 
-  # Resource naming inputs
-  resource_type_code = "rg"
-  max_length         = 64
-  no_dashes          = false
-  add_random         = true
-  rnd_length         = 2
+
+  public_internet_ips_to_allow = [module.publicip.public_ip]
+  deploy_validation_secret     = var.deploy_validation_secret
+
+  additional_tags = var.kv_additional_tags
 }
 
 ```
