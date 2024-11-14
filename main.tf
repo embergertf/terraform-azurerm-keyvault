@@ -17,7 +17,7 @@
 # -
 # https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations
 # https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules
-module "kv_base" {
+module "base" {
   # Terraform Cloud PMR use
   source  = "app.terraform.io/embergertf/base/azurerm"
   version = "~> 4.0"
@@ -33,12 +33,13 @@ module "kv_base" {
   additional_name = var.additional_name
   iterator        = var.iterator
   owner           = var.owner
+  additional_tags = var.additional_tags
 
-  # Random
+  # Random name generation
   add_random = var.add_random
   rnd_length = var.rnd_length
 
-  # Key vault specifics settings
+  # Resource naming inputs
   resource_type_code = "kv"
   max_length         = 24
   no_dashes          = false
@@ -48,8 +49,8 @@ module "kv_base" {
 # - Create the Key vault Resource
 # -
 resource "azurerm_key_vault" "this" {
-  name                = module.kv_base.name
-  location            = module.kv_base.location
+  name                = module.base.name
+  location            = module.base.location
   resource_group_name = var.resource_group_name
 
   sku_name  = var.sku_name
@@ -71,7 +72,7 @@ resource "azurerm_key_vault" "this" {
     virtual_network_subnet_ids = var.virtual_network_subnet_ids
   }
 
-  tags = merge(module.kv_base.tags, var.additional_tags)
+  tags = module.base.tags
   lifecycle { ignore_changes = [tags["BuiltOn"]] }
 }
 

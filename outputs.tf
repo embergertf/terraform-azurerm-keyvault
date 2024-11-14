@@ -23,23 +23,35 @@ output "resource_group_name" {
   value       = azurerm_key_vault.this.resource_group_name
   description = "Key vault Resource group name."
 }
-
-/*
-# ############################   Debug                ############################
-output "name" {
-  value       = module.kv_base.name
-  description = "Key vault name."
-}
-output "location" {
-  value       = module.kv_base.location
-  description = "Key vault location."
+output "tags" {
+  value       = azurerm_key_vault.this.tags
+  description = "Key vault tags."
 }
 output "random_suffix" {
-  value       = module.kv_base.random_suffix
+  value       = module.base.random_suffix
   description = "Randomized piece of the Key vault name when \"`add_random = true`\"."
 }
-output "naming_module_tags" {
-  value       = module.kv_base.tags
-  description = "Naming module tags."
+output "naming_values" {
+  value       = module.base.naming_values
+  description = "A terraform object with the naming values in 1 variable."
+}
+
+
+# ############################   Debug                ############################
+output "base_name" {
+  value       = module.base.name
+  description = "Base module name."
+}
+output "base_location" {
+  value       = module.base.location
+  description = "Base module location."
+}
+output "base_random_suffix" {
+  value       = module.base.random_suffix
+  description = "Base module randomized piece the name when \"`add_random = true`\"."
+}
+output "base_tags" {
+  value       = module.base.tags
+  description = "Base module tags."
 }
 #*/

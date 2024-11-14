@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [1.1.1] - 2024-11-14 - Moved `additional_tags` to base module
+
+### Modified
+
+- Moved `additional_tags` to base module
+
 ## [1.1.0] - 2024-11-12 - Added outputs
 
 ### Added
