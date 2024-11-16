@@ -113,7 +113,7 @@ variable "sku_name" {
 variable "purge_protection_enabled" {
   type        = bool
   description = "(Optional) Is Purge Protection enabled for this Key Vault?"
-  default     = true
+  default     = false
 }
 variable "enabled_for_disk_encryption" {
   type        = bool

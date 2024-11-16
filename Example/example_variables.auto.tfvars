@@ -10,19 +10,19 @@ naming_values = {
   subsc_code      = "714895"
   env             = "dev"
   base_name       = "embergertf"
-  additional_name = "keyvault"
+  additional_name = "kv"
   iterator        = "01"
   owner           = "Emm"
   additional_tags = {
-    Test_by    = "Emm",
-    GitHub_org = "gopher194/embergertf",
-    Purpose    = "Terraform modules development"
+    GitHub_org = "gopher194/embergertf"
     Module     = "keyvault"
+    Purpose    = "Terraform modules development"
+    Test_by    = "Emm"
   }
 }
 
-add_random = null
-rnd_length = null
+add_random = true
+rnd_length = 5
 
 kv_additional_tags = {
   Added_by = "kv_module_localtest"
